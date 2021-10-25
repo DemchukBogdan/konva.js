@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/konva@8/konva.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div id="container"></div>
+    <script>
+      var width = window.innerWidth;
+      var height = window.innerHeight;
+
+      var stage = new Konva.Stage({
+        container: 'container',
+        width: width,
+        height: height,
+      });
+
+      var layer = new Konva.Layer();
+      // add the layer to the stage
+      stage.add(layer);
+
+      var rectHeight = 50;
+      var rectY = (stage.height() - rectHeight) / 2;
+
+      
+
+      var circle = new Konva.Circle({
+        x: 100,
+        y: 200,
+        radius: 20,
+        fill: 'red',
+        stroke: 'black',
+        strokeWidth: 2,
+        draggable: true,
+      });
+
+      layer.add(circle);
+      var origX = circle.x();
+      circle.on('dragmove', () => {
+        // we will keep new x position
+        // but reset y position to the original
+        circle.x(origX);
+      });
+
+
+
+
+
+      var circle2 = new Konva.Circle({
+        x: 200,
+        y: 200,
+        radius: 20,
+        fill: 'red',
+        stroke: 'black',
+        strokeWidth: 2,
+        draggable: true,
+      });
+
+      layer.add(circle2);
+      var origX2 = circle2.x();
+      circle2.on('dragmove', () => {
+        // we will keep new x position
+        // but reset y position to the original
+        circle2.x(origX2);
+      });
+
+
+
+
+      var circle3 = new Konva.Circle({
+        x: 400,
+        y: 200,
+        radius: 20,
+        fill: 'red',
+        stroke: 'black',
+        strokeWidth: 2,
+        draggable: true,
+      });
+
+      layer.add(circle3);
+      var origX3 = circle3.x();
+      var newY = circle3.y();
+      circle3.on('dragmove', () => {
+        
+        circle3.x(origX3);
+      });
+
+
+
+
+      var blackLine = new Konva.Line({
+        points: [origX, 50, origX3, newY],
+        stroke: 'black',
+        strokeWidth: 4,
+        lineCap: 'round',
+        lineJoin: 'round',
+        draggable: true,
+      });
+
+      layer.add(blackLine);
+
+      
+    </script>
+  </body>
+
+</html>
